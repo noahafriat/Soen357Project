@@ -1,0 +1,27 @@
+[
+    {
+      "id": "l1",
+      "title": "COMP 348 Textbook",
+      "category": "Textbooks",
+      "price": 45,
+      "description": "Gently used, no highlights. 3rd edition.",
+      "sellerId": "u1"
+    },
+    {
+      "id": "l2",
+      "title": "TI-84 Plus Calculator",
+      "category": "Electronics",
+      "price": 60,
+      "description": "Perfect for exams. Batteries included.",
+      "sellerId": "u2"
+    },
+    {
+      "id": "l3",
+      "title": "SOEN 287 Web Dev Book",
+      "category": "Textbooks",
+      "price": 35,
+      "description": "Great condition, some pencil notes.",
+      "sellerId": "u3"
+    }
+  ]
+  
