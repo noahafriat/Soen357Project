@@ -1,14 +1,12 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import listingsData from "../data/listings.json";
-import usersData from "../data/users.json";
+import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Badge from "../components/Badge";
 
-function Listing() {
+function Listing({ listings }) {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const listing = listingsData.find((item) => item.id === id);
+    const listing = listings.find((item) => item.id === id);
 
     if (!listing) {
         return (
@@ -18,8 +16,6 @@ function Listing() {
             </div>
         )
     }
-
-    const seller = usersData.find((user) => user.id === listing.sellerId);
 
     const handleMessageSeller = () => {
         navigate(`/chat/${listing.id}`);
@@ -32,11 +28,19 @@ function Listing() {
                 ${listing.price}
             </p>
 
-            {seller && (
-                <p style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
-                    Seller: {seller.name}
-                    <Badge type={seller.type} />
-                </p>
+            <p style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
+                Seller: {listing.sellerName}
+                <Badge type={listing.sellerType} />
+            </p>
+
+            {listing.imageUrl && (
+                <div style={{ marginBottom: "1rem" }}>
+                <img
+                    src={listing.imageUrl}
+                    alt={listing.title}
+                    style={{ maxWidth: "300px", borderRadius: "8px" }}
+                />
+                </div>
             )}
 
             <p style={{ maxWidth: "600px", marginBottom: "1rem" }}>
@@ -61,7 +65,7 @@ function Listing() {
                 Message seller
             </button>
         </div>
-    )
+    );
 }
 
 export default Listing;

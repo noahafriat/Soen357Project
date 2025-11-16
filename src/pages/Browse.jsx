@@ -1,33 +1,21 @@
-import React from 'react';
-import listingsData from "../data/listings.json";
-import usersData from "../data/users.json";
+import React from "react";
 import ListingCard from "../components/ListingCard";
 
-function Browse() {
-    const getSeller = (sellerId) =>
-        usersData.find((user) => user.id === sellerId);
+function Browse({ listings }) {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <h1>Browse Listings</h1>
+      <p style={{ color: "#555" }}>
+        These are mock listings. New listings you post will also appear here.
+      </p>
 
-    return (
-        <div style={{ padding: "2rem" }}>
-            <h1>Browse Listings</h1>
-            <p style={{ color: "#555" }}>
-                Mock listings loaded from JSON for now.
-            </p>
-
-            <div style={{ marginTop: "1.5rem" }}>
-                {listingsData.map((listing) => {
-                const seller = getSeller(listing.sellerId);
-                return (
-                    <ListingCard
-                    key={listing.id}
-                    listing={listing}
-                    seller={seller}
-                    />
-                );
-                })}
-            </div>
-        </div>
-    );
+      <div style={{ marginTop: "1.5rem" }}>
+        {listings.map((listing) => (
+          <ListingCard key={listing.id} listing={listing} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Browse;

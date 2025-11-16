@@ -2,29 +2,68 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Badge from "./Badge";
 
-function ListingCard({ listing, seller }) {
-    return (
-        <div
+function ListingCard({ listing }) {
+  return (
+    <div
+      style={{
+        border: "1px solid #ddd",
+        borderRadius: "8px",
+        padding: "1rem",
+        marginBottom: "1rem",
+        display: "flex",
+        gap: "1rem"
+      }}
+    >
+      {/* Image section */}
+      <div style={{ width: "120px", height: "120px", flexShrink: 0 }}>
+        {listing.imageUrl ? (
+          <img
+            src={listing.imageUrl}
+            alt={listing.title}
             style={{
-                border: "1px solid #ddd",
-                borderRadius: "8px",
-                padding: "1rem",
-                marginBottom: "1rem"
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "8px"
             }}
-        >
-            <h2 style={{ margin: 0 }}>
-                <Link to={`/listing/${listing.id}`}>{listing.title}</Link>
-            </h2>
-            <p style={{ margin: "0.25rem 0" }}>${listing.price}</p>
-            <p style={{ margin: "0.25rem 0", color: "#555" }}>
-                {seller?.name}
-                <Badge type={seller?.type} />
-            </p>
-            <p style={{ margin: "0.25rem 0", fontSize: "0.85rem", color: "#777" }}>
-                {listing.category}
-            </p>
-        </div>
-    )
+          />
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              borderRadius: "8px",
+              backgroundColor: "#f3f3f3",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "0.8rem",
+              color: "#999"
+            }}
+          >
+            No image
+          </div>
+        )}
+      </div>
+
+      {/* Text section */}
+      <div style={{ flex: 1 }}>
+        <h2 style={{ margin: 0 }}>
+          <Link to={`/listing/${listing.id}`}>{listing.title}</Link>
+        </h2>
+        <p style={{ margin: "0.25rem 0", fontWeight: "bold" }}>
+          ${listing.price}
+        </p>
+        <p style={{ margin: "0.25rem 0", color: "#555" }}>
+          {listing.sellerName}
+          <Badge type={listing.sellerType} />
+        </p>
+        <p style={{ margin: "0.25rem 0", fontSize: "0.85rem", color: "#777" }}>
+          {listing.category}
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default ListingCard;
