@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Badge from "../components/Badge";
+import ChatWindow from '../components/ChatWindow';
 
-function Chat({ listings }) {
+function Chat({ listings, currentUser }) {
     const { listingId } = useParams();
 
     const listing = listings.find((item) => item.id === listingId);
@@ -16,6 +17,16 @@ function Chat({ listings }) {
         )
     }
 
+    const initialMessages = [
+      {
+        id: "m1",
+        from: listing.sellerName,
+        fromType: listing.sellerType,
+        text: "Hi, thanks for your interest in this item, how can I help you?",
+        timestamp: new Date().toLocaleString()
+      }
+    ];
+
     return (
         <div style={{ padding: "2rem" }}>
           <h1>Chat about: {listing.title}</h1>
@@ -24,10 +35,11 @@ function Chat({ listings }) {
             Messaging seller: {listing.sellerName}
             <Badge type={listing.sellerType} />
         </p>
-         
-          <p style={{ color: "#555", marginBottom: "1rem" }}>
-            This is where the chat window will go.
-          </p>
+        <ChatWindow
+          currentUser={currentUser}
+          otherUserName={listing.sellerName}
+          initialMessages={initialMessages}
+        />
         </div>
       );
     }
