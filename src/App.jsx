@@ -93,7 +93,7 @@ function App() {
             path="/chat/:listingId"
             element={
               currentUser ? (
-                <Chat listings={listings} />
+                <Chat listings={listings} currentUser={currentUser} />
               ) : (
                 <Navigate to="/" replace />
               )
