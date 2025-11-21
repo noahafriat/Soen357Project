@@ -26,14 +26,27 @@ function App() {
         description: item.description,
         imageUrl: item.imageUrl || null, 
         sellerName: seller?.name || "Unknown seller",
-        sellerType: seller?.type || null
+        sellerType: seller?.type || null,
+        sellerEmail: seller?.email || null
       };
     });
 
   const [listings, setListings] = useState(buildInitialListings);
 
+  const handleUpdateListing = (updatedListing) => {
+    setListings((prev) => 
+      prev.map((listing) => 
+        listing.id === updatedListing.id ? updatedListing : listing
+      )
+    );
+  };
+
   const handleAddListing = (newListing) => {
-    setListings((prev) => [newListing, ...prev]); // put new one at top
+    setListings((prev) => [newListing, ...prev]); 
+  };
+
+  const handleDeleteListing = (listingId) => {
+    setListings((prev) => prev.filter((listing) => listing.id !== listingId));
   };
 
   return (
@@ -82,7 +95,12 @@ function App() {
             path="/listing/:id"
             element={
               currentUser ? (
-                <Listing listings={listings} />
+                <Listing 
+                  listings={listings} 
+                  currentUser={currentUser}
+                  onUpdateListing={handleUpdateListing}
+                  onDeleteListing={handleDeleteListing}
+                />
               ) : (
                 <Navigate to="/" replace />
               )

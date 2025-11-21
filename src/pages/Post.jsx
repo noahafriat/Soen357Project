@@ -39,7 +39,8 @@ function Post({ onAddListing, currentUser }) {
       description: description.trim(),
       imageUrl: imagePreview || null, 
       sellerName: currentUser?.name || currentUser?.email || "Unknown seller",
-      sellerType: currentUser?.type || null
+      sellerType: currentUser?.type || null,
+      sellerEmail: currentUser?.email || null
     };
 
     onAddListing(newListing);
