@@ -6,6 +6,7 @@ import Browse from './pages/Browse';
 import Listing from './pages/Listing';
 import Chat from './pages/Chat';
 import Post from './pages/Post';
+import MyListings from './pages/MyListings';
 
 import listingsData from "./data/listings.json";
 import usersData from "./data/users.json";
@@ -59,6 +60,7 @@ function App() {
         <Link to="/">Login</Link> |{" "}
         <Link to="/browse">Browse</Link> |{" "}
         <Link to="/post">Post</Link> |{" "}
+        <Link to="/my-listings">My Listings</Link> |{" "}
         {currentUser && (
           <span style={{ marginLeft: "1rem", fontSize: "0.9rem" }}>
             Logged in as: {currentUser.name} ({currentUser.type}) {" "}
@@ -88,7 +90,7 @@ function App() {
             path="/browse"
             element={
               currentUser ? (
-                <Browse listings={listings} />
+                <Browse listings={listings} currentUser={currentUser} />
               ) : (
                 <Navigate to="/" replace />
               )
@@ -132,6 +134,17 @@ function App() {
                 <Chat listings={listings} currentUser={currentUser} />
               ) : (
                 <Navigate to="/" replace />
+              )
+            }
+          />
+
+          <Route
+            path="/my-listings"
+            element={
+              currentUser ? (
+                <MyListings listings={listings} currentUser={currentUser} />
+              ) : (
+                <Navigate to ='/' replace />
               )
             }
           />
