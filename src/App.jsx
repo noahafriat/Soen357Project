@@ -14,6 +14,10 @@ import './App.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+  }
   
   const buildInitialListings = () =>
     listingsData.map((item) => {
@@ -57,8 +61,22 @@ function App() {
         <Link to="/post">Post</Link> |{" "}
         {currentUser && (
           <span style={{ marginLeft: "1rem", fontSize: "0.9rem" }}>
-            Logged in as: {currentUser.name} (
-            {currentUser.type})
+            Logged in as: {currentUser.name} ({currentUser.type}) {" "}
+            <button
+              onClick={handleLogout}
+              style={{
+                marginLeft: "0.75rem",
+                padding: "0.25rem 0.5rem",
+                backgroundColor: "#d9534f",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontSize: "0.85rem"
+              }}
+            >
+              Logout
+            </button>
           </span>
         )}
       </nav>
