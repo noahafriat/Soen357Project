@@ -55,13 +55,19 @@ function ListingCard({ listing, currentUser }) {
           ${listing.price}
         </p>
         <p style={{ margin: "0.25rem 0", color: "#555" }}>
+        <Link
+          to={`/seller/${listing.sellerEmail}`}
+          style={{ textDecoration: "none", color: "#1976d2", fontWeight: "bold" }}
+        >
           {listing.sellerName}
+        </Link>
+
           <Badge type={listing.sellerType} />      
           {currentUser && 
           listing.sellerEmail && 
           currentUser.email && 
           listing.sellerEmail.toLowerCase() === currentUser.email.toLowerCase() && (
-            <span style={{ color: "#1976d2", fontWeight: "bold", fontSize: "0.8rem", marginLeft: "10px" }}>
+            <span style={{ color: "orange", fontWeight: "bold", fontSize: "0.8rem", marginLeft: "10px" }}>
               Your Listing
             </span>
           )}

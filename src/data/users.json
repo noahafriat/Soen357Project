@@ -1,20 +1,15 @@
 [
-    {
-        "id": "u1",
-        "name": "Noah Afriat",
-        "email": "noahafriat@concordia.ca",
-        "type": "student"
-    }, 
-    {
-        "id": "u2",
-        "name": "Robert Mounsef",
-        "email": "robertmounsef@concordia.ca",
-        "type": "professor"
-    }, 
-    {
-        "id": "u3",
-        "name": "Tala Khraim",
-        "email": "talakhraim@gmail.com",
-        "type": null
-    }
-]
+    { "id": 1, "name": "Alex Tremblay",     "email": "alex.tremblay@concordia.ca",     "type": "student" },
+    { "id": 2, "name": "Sarah Nguyen",      "email": "sarah.nguyen@concordia.ca",      "type": "student" },
+    { "id": 3, "name": "Michael Chen",      "email": "michael.chen@concordia.ca",      "type": "student" },
+    { "id": 4, "name": "Emily Patel",       "email": "emily.patel@concordia.ca",       "type": "student" },
+    { "id": 5, "name": "Jason Moreau",      "email": "jason.moreau@concordia.ca",      "type": "student" },
+    { "id": 6, "name": "Professor Julien Roy", "email": "julien.roy@concordia.ca",      "type": "professor" },
+    { "id": 7, "name": "Professor Anna Silva", "email": "anna.silva@concordia.ca",       "type": "professor" },
+    { "id": 8, "name": "Professor Omar Haddad", "email": "omar.haddad@concordia.ca",     "type": "professor" },
+    { "id": 9, "name": "Marie Gauthier",    "email": "marie.gauthier@concordia.ca",    "type": "student" },
+    { "id": 10, "name": "David Li",         "email": "david.li@concordia.ca",          "type": "student" },
+    { "id": 11, "name": "Sofia Martins",     "email": "sofia.martins@concordia.ca",     "type": "student" },
+    { "id": 12, "name": "Professor Ethan Clarke", "email": "ethan.clarke@concordia.ca", "type": "professor" }
+  ]
+  
