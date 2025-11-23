@@ -2,7 +2,7 @@ import React, { useState, useMemo }  from "react";
 import ListingCard from "../components/ListingCard";
 import Filters from "../components/Filters";
 
-function Browse({ listings }) {
+function Browse({ listings, currentUser }) {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -59,7 +59,7 @@ function Browse({ listings }) {
           </p>
         ) : (
           filteredListings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
+            <ListingCard key={listing.id} listing={listing} currentUser={currentUser} />
           ))
         )}
       </div>

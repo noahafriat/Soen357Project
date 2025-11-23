@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Badge from "./Badge";
 
-function ListingCard({ listing }) {
+function ListingCard({ listing, currentUser }) {
   return (
     <div
       style={{
@@ -56,7 +56,15 @@ function ListingCard({ listing }) {
         </p>
         <p style={{ margin: "0.25rem 0", color: "#555" }}>
           {listing.sellerName}
-          <Badge type={listing.sellerType} />
+          <Badge type={listing.sellerType} />      
+          {currentUser && 
+          listing.sellerEmail && 
+          currentUser.email && 
+          listing.sellerEmail.toLowerCase() === currentUser.email.toLowerCase() && (
+            <span style={{ color: "#1976d2", fontWeight: "bold", fontSize: "0.8rem", marginLeft: "10px" }}>
+              Your Listing
+            </span>
+          )}
         </p>
         <p style={{ margin: "0.25rem 0", fontSize: "0.85rem", color: "#777" }}>
           {listing.category}
