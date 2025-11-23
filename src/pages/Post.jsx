@@ -94,7 +94,10 @@ function Post({ onAddListing, currentUser }) {
           >
             <option value="Textbooks">Textbooks</option>
             <option value="Electronics">Electronics</option>
-            <option value="Furniture">Furniture</option>
+            <option value="Books">Books</option>
+            <option value="Furniture/Appliances">Furniture/Appliances</option>
+            <option value="LabGear">Lab Gear</option>
+            <option value="Tutoring">Tutoring</option>
             <option value="Other">Other</option>
           </select>
         </div>
