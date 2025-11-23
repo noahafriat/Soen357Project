@@ -1,12 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Badge from "../components/Badge";
 import ChatWindow from '../components/ChatWindow';
 
 function Chat({ listings, currentUser }) {
     const { listingId } = useParams();
+    const listingIdNumber = Number(listingId);
 
-    const listing = listings.find((item) => item.id === listingId);
+
+    const listing = listings.find((item) => item.id === listingIdNumber);
 
     if(!listing) {
         return (
@@ -32,7 +34,14 @@ function Chat({ listings, currentUser }) {
           <h1>Chat about: {listing.title}</h1>
     
         <p style={{ marginBottom: "1rem" }}>
-            Messaging seller: {listing.sellerName}
+            Messaging seller: 
+            <Link
+              to={`/seller/${listing.sellerEmail}`}
+              style={{ textDecoration: "none", color: "#1976d2", fontWeight: "bold", marginLeft: "10px" }}
+            >
+              {listing.sellerName}
+            </Link>
+
             <Badge type={listing.sellerType} />
         </p>
         <ChatWindow

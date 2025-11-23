@@ -7,6 +7,7 @@ import Listing from './pages/Listing';
 import Chat from './pages/Chat';
 import Post from './pages/Post';
 import MyListings from './pages/MyListings';
+import SellerProfile from './pages/SellerProfile';
 
 import listingsData from "./data/listings.json";
 import usersData from "./data/users.json";
@@ -15,6 +16,34 @@ import './App.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [users, setUsers] = useState(usersData);
+
+  const handleLogin = (user) => {
+    setCurrentUser(user);
+  
+    setUsers((prevUsers) => {
+      const emailKey = user.email.toLowerCase();
+  
+      const exists = prevUsers.some(
+        (u) => u.email.toLowerCase() === emailKey
+      );
+      if (!exists) {
+        setSellerRatings((prevRatings) => {
+          if (prevRatings[emailKey]) return prevRatings;
+  
+          return {
+            ...prevRatings,
+            [emailKey]: (Math.random() * 1.5 + 3.5).toFixed(1),
+          };
+        });
+  
+        return [...prevUsers, user];
+      }
+  
+      return prevUsers;
+    });
+  };
+  
 
   const handleLogout = () => {
     setCurrentUser(null);
@@ -37,6 +66,18 @@ function App() {
     });
 
   const [listings, setListings] = useState(buildInitialListings);
+
+  const buildInitialRatings = () => {
+    const ratings = {};
+    usersData.forEach((u) => {
+      const key = u.email.toLowerCase();
+      ratings[key] = (Math.random() * 1.5 + 3.5).toFixed(1);
+    });
+    return ratings;
+  };
+  
+  const [sellerRatings, setSellerRatings] = useState(buildInitialRatings);
+
 
   const handleUpdateListing = (updatedListing) => {
     setListings((prev) => 
@@ -85,7 +126,7 @@ function App() {
 
       <div className="page-container">
         <Routes>
-          <Route path="/" element={<Login onLogin={setCurrentUser} />} />
+          <Route path="/" element={<Login onLogin={handleLogin} />} />
           <Route
             path="/browse"
             element={
@@ -143,6 +184,17 @@ function App() {
             element={
               currentUser ? (
                 <MyListings listings={listings} currentUser={currentUser} />
+              ) : (
+                <Navigate to ='/' replace />
+              )
+            }
+          />
+
+          <Route
+            path="/seller/:email"
+            element={
+              currentUser ? (
+                <SellerProfile listings={listings} users={users} sellerRatings={sellerRatings} />
               ) : (
                 <Navigate to ='/' replace />
               )

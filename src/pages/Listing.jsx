@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Badge from "../components/Badge";
 
 function Listing({ listings, currentUser, onUpdateListing, onDeleteListing }) {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const listing = listings.find((item) => item.id === id);
+    const listing = listings.find((item) => String(item.id) === String(id));
 
     const [isEditing, setIsEditing] = useState(false);
+    const [editTitle, setEditTitle] = useState(listing?.title || "");
     const [editPrice, setEditPrice] = useState(listing?.price?.toString() || "");
     const [editDescription, setEditDescription] = useState(listing?.description || "");
     const [editImagePreview, setEditImagePreview] = useState(listing?.imageUrl || null);
 
     useEffect(() => {
         if (listing) {
+          setEditTitle(listing.title || "");
           setEditPrice(listing.price.toString());
           setEditDescription(listing.description || "");
           setEditImagePreview(listing.imageUrl || null);
@@ -32,15 +34,6 @@ function Listing({ listings, currentUser, onUpdateListing, onDeleteListing }) {
 
     const isOwner = currentUser && listing.sellerEmail && currentUser.email && 
         listing.sellerEmail.toLowerCase() === currentUser.email.toLowerCase();
-    
-    // Debugging stuff
-    console.log("Owner check:", {
-        currentUser: currentUser?.email,
-        currentUserName: currentUser?.name,
-        listingSellerEmail: listing.sellerEmail,
-        listingSellerName: listing.sellerName,
-        isOwner: isOwner
-    });
 
     const handleMessageSeller = () => {
         navigate(`/chat/${listing.id}`);
@@ -61,6 +54,7 @@ function Listing({ listings, currentUser, onUpdateListing, onDeleteListing }) {
 
         const updatedListing = {
             ...listing,
+            title: editTitle.trim(),
             price: Number(editPrice),
             description: editDescription.trim(),
             imageUrl: editImagePreview || null,
@@ -86,7 +80,13 @@ function Listing({ listings, currentUser, onUpdateListing, onDeleteListing }) {
             </p>
 
             <p style={{ marginTop: "0.5rem", marginBottom: "1rem" }}>
-                Seller: {listing.sellerName}
+                Seller: 
+                <Link
+                to={`/seller/${listing.sellerEmail}`}
+                style={{ textDecoration: "none", color: "#1976d2", fontWeight: "bold", marginLeft: "10px" }}
+                >
+                {listing.sellerName}
+                </Link>
                 <Badge type={listing.sellerType} />
             </p>
 
@@ -161,6 +161,19 @@ function Listing({ listings, currentUser, onUpdateListing, onDeleteListing }) {
                         onSubmit={handleSaveChanges}
                         style={{ maxWidth: "400px", marginTop: "0.5rem" }}
                         >
+
+                        <div style={{ marginBottom: "0.75rem" }}>
+                            <label style={{ display: "block", marginBottom: "0.25rem" }}>
+                            Title
+                            </label>
+                            <textarea
+                            value={editTitle}
+                            onChange={(e) => setEditTitle(e.target.value)}
+                            rows={4}
+                            style={{ width: "100%", padding: "0.4rem" }}
+                            />
+                        </div>
+
                         <div style={{ marginBottom: "0.75rem" }}>
                             <label style={{ display: "block", marginBottom: "0.25rem" }}>
                             Price
@@ -233,6 +246,7 @@ function Listing({ listings, currentUser, onUpdateListing, onDeleteListing }) {
                             type="button"
                             onClick={() => {
                             setIsEditing(false);
+                            setEditTitle(listing.title || "");
                             setEditPrice(listing.price.toString());
                             setEditDescription(listing.description || "");
                             setEditImagePreview(listing.imageUrl || null);

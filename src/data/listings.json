@@ -1,27 +1,182 @@
 [
-    {
-      "id": "l1",
-      "title": "COMP 348 Textbook",
-      "category": "Textbooks",
-      "price": 45,
-      "description": "Gently used, no highlights. 3rd edition.",
-      "sellerId": "u1"
-    },
-    {
-      "id": "l2",
-      "title": "TI-84 Plus Calculator",
-      "category": "Electronics",
-      "price": 60,
-      "description": "Perfect for exams. Batteries included.",
-      "sellerId": "u2"
-    },
-    {
-      "id": "l3",
-      "title": "SOEN 287 Web Dev Book",
-      "category": "Textbooks",
-      "price": 35,
-      "description": "Great condition, some pencil notes.",
-      "sellerId": "u3"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "COMP 348 Textbook – Concepts of Programming Languages",
+    "category": "Textbooks",
+    "price": 45,
+    "description": "Good condition. Used for COMP 348 at Concordia.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 1
+  },
+  {
+    "id": 2,
+    "title": "IKEA Desk – White",
+    "category": "Furniture",
+    "price": 60,
+    "description": "Minimal wear, selling because I'm moving.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 3
+  },
+  {
+    "id": 3,
+    "title": "MacBook Air 2017",
+    "category": "Electronics",
+    "price": 350,
+    "description": "Perfect for school. Battery still decent.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 2
+  },
+  {
+    "id": 4,
+    "title": "Apartment Coffee Table",
+    "category": "Furniture",
+    "price": 25,
+    "description": "Simple wood coffee table. Great for students.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 9
+  },
+  {
+    "id": 5,
+    "title": "Monitor 24-inch",
+    "category": "Electronics",
+    "price": 90,
+    "description": "1080p, works perfectly.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 10
+  },
+  {
+    "id": 6,
+    "title": "MATH 204 Calculus Textbook",
+    "category": "Textbooks",
+    "price": 30,
+    "description": "Barely used, great condition.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 4
+  },
+  {
+    "id": 7,
+    "title": "Engineering Drawing Tools",
+    "category": "Supplies",
+    "price": 15,
+    "description": "Set includes rulers, compass, stencils.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 5
+  },
+  {
+    "id": 8,
+    "title": "PS5 Controller – Red",
+    "category": "Electronics",
+    "price": 45,
+    "description": "Barely used, like new.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 11
+  },
+  {
+    "id": 9,
+    "title": "Winter Jacket (Medium)",
+    "category": "Clothing",
+    "price": 40,
+    "description": "Warm winter coat perfect for Montreal weather.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 3
+  },
+  {
+    "id": 10,
+    "title": "Kitchen Starter Set",
+    "category": "Home",
+    "price": 20,
+    "description": "Plates, bowls, cups, cutlery set.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 12
+  },
+  {
+    "id": 11,
+    "title": "SOEN 287 Web Programming Textbook",
+    "category": "Textbooks",
+    "price": 35,
+    "description": "Essential textbook for SOEN 287.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 1
+  },
+  {
+    "id": 12,
+    "title": "Gaming Chair",
+    "category": "Furniture",
+    "price": 120,
+    "description": "Comfortable chair, height adjustable.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 7
+  },
+  {
+    "id": 13,
+    "title": "Printer (Canon)",
+    "category": "Electronics",
+    "price": 50,
+    "description": "Works well, includes ink.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 8
+  },
+  {
+    "id": 14,
+    "title": "BIOL 201 Notes + Workbook",
+    "category": "Books",
+    "price": 10,
+    "description": "Useful for exams.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 2
+  },
+  {
+    "id": 15,
+    "title": "Office Chair",
+    "category": "Furniture",
+    "price": 35,
+    "description": "Basic office chair. Small tear on side.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 4
+  },
+  {
+    "id": 16,
+    "title": "Headphones – Noise Cancelling",
+    "category": "Electronics",
+    "price": 85,
+    "description": "Great sound quality.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 6
+  },
+  {
+    "id": 17,
+    "title": "French Grammar Book",
+    "category": "Books",
+    "price": 12,
+    "description": "Perfect for beginners.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 9
+  },
+  {
+    "id": 18,
+    "title": "Dorm Microwave",
+    "category": "Appliances",
+    "price": 40,
+    "description": "Works perfectly.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 10
+  },
+  {
+    "id": 19,
+    "title": "AirPods Case – Clear",
+    "category": "Accessories",
+    "price": 5,
+    "description": "Brand new.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 11
+  },
+  {
+    "id": 20,
+    "title": "Concordia Hoodie (Medium)",
+    "category": "Clothing",
+    "price": 25,
+    "description": "Official bookstore hoodie.",
+    "imageUrl": "https://via.placeholder.com/300",
+    "sellerId": 12
+  }
+]
