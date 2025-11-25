@@ -1,29 +1,29 @@
 # Concordia Marketplace
 
 ## Overview
-**Concordia Marketplace** is a campus-only buy & sell platform for  
-**Concordia University students and professors**.  
-Access is restricted to users with a **verified @concordia.ca email**, creating a trusted, closed community for buying and selling textbooks, electronics, furniture, tutoring services, and more.
+Concordia Marketplace is a campus-only buy & sell platform for  
+Concordia University students and professors.  
+Access is restricted to users with a verified @concordia.ca email, creating a trusted, closed community for buying and selling textbooks, electronics, furniture, tutoring services, and more.
 
 ---
 
 ## Features
-- **Concordia-only login** (requires @concordia.ca email)
-- **Post new listings** with title, description, price, and category
-- **Browse all listings** in a responsive grid layout
-- **View your own posts** through a dedicated My Listings page
-- **View seller profiles** and all items posted by a specific user
-- **Fully clickable listing cards** for smooth navigation
-- **Dynamic navigation** that changes based on login state
-- **Modern Concordia-themed UI** (responsive for mobile + desktop)
+- Concordia-only login (requires @concordia.ca email)
+- Post new listings with title, description, price, and category
+- Browse all listings in a responsive grid layout
+- View your own posts through a dedicated My Listings page
+- View seller profiles and all items posted by a specific user
+- Fully clickable listing cards for smooth navigation
+- Dynamic navigation that changes based on login state
+- Modern Concordia-themed UI
 
 ---
 
 ## Project Structure
-
+```plaintext
 public/
 ├── images/
-│
+
 src/
 │
 ├── assets/
@@ -51,7 +51,7 @@ src/
 ├── App.css
 ├── App.jsx
 └── index.js
-
+```
 ---
 
 ## Getting Started
