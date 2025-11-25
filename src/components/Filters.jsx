@@ -8,50 +8,24 @@ function Filters({
   categories
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "1rem",
-        marginTop: "1rem",
-        marginBottom: "1rem"
-      }}
-    >
-      <div style={{ flex: 1, minWidth: "200px" }}>
-        <label
-          style={{
-            display: "block",
-            marginBottom: "0.25rem",
-            fontSize: "0.85rem",
-            color: "#555"
-          }}
-        >
-          Search
-        </label>
+    <div className="filters">
+      <div className="filters__search">
+        <label className="filters__label">Search</label>
         <input
           type="text"
           value={searchText}
           onChange={(e) => onSearchTextChange(e.target.value)}
-          placeholder="Search by title or description..."
-          style={{ width: "100%", padding: "0.4rem" }}
+          placeholder="Search by title or description"
+          className="form__input"
         />
       </div>
 
-      <div style={{ width: "200px" }}>
-        <label
-          style={{
-            display: "block",
-            marginBottom: "0.25rem",
-            fontSize: "0.85rem",
-            color: "#555"
-          }}
-        >
-          Category
-        </label>
+      <div className="filters__category">
+        <label className="filters__label">Category</label>
         <select
           value={selectedCategory}
           onChange={(e) => onCategoryChange(e.target.value)}
-          style={{ width: "100%", padding: "0.4rem" }}
+          className="form__select"
         >
           <option value="All">All categories</option>
           {categories.map((cat) => (

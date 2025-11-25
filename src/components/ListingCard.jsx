@@ -3,80 +3,53 @@ import { Link } from "react-router-dom";
 import Badge from "./Badge";
 
 function ListingCard({ listing, currentUser }) {
+  const isOwner =
+    currentUser &&
+    listing.sellerEmail &&
+    currentUser.email &&
+    listing.sellerEmail.toLowerCase() === currentUser.email.toLowerCase();
+
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        borderRadius: "8px",
-        padding: "1rem",
-        marginBottom: "1rem",
-        display: "flex",
-        gap: "1rem"
-      }}
-    >
-      {/* Image section */}
-      <div style={{ width: "120px", height: "120px", flexShrink: 0 }}>
-        {listing.imageUrl ? (
-          <img
-            src={listing.imageUrl}
-            alt={listing.title}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "8px"
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: "8px",
-              backgroundColor: "#f3f3f3",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "0.8rem",
-              color: "#999"
-            }}
-          >
-            No image
-          </div>
-        )}
-      </div>
-
-      {/* Text section */}
-      <div style={{ flex: 1 }}>
-        <h2 style={{ margin: 0 }}>
-          <Link to={`/listing/${listing.id}`}>{listing.title}</Link>
-        </h2>
-        <p style={{ margin: "0.25rem 0", fontWeight: "bold" }}>
-          ${listing.price}
-        </p>
-        <p style={{ margin: "0.25rem 0", color: "#555" }}>
-        <Link
-          to={`/seller/${listing.sellerEmail}`}
-          style={{ textDecoration: "none", color: "#1976d2", fontWeight: "bold" }}
-        >
-          {listing.sellerName}
-        </Link>
-
-          <Badge type={listing.sellerType} />      
-          {currentUser && 
-          listing.sellerEmail && 
-          currentUser.email && 
-          listing.sellerEmail.toLowerCase() === currentUser.email.toLowerCase() && (
-            <span style={{ color: "orange", fontWeight: "bold", fontSize: "0.8rem", marginLeft: "10px" }}>
-              Your Listing
-            </span>
+    <Link to={`/listing/${listing.id}`} className="listing-card__link">
+      <div className="listing-card">
+        <div className="listing-card__image-wrapper">
+          {listing.imageUrl ? (
+            <img
+              src={listing.imageUrl}
+              alt={listing.title}
+              className="listing-card__image"
+            />
+          ) : (
+            <div className="listing-card__no-image">No image</div>
           )}
-        </p>
-        <p style={{ margin: "0.25rem 0", fontSize: "0.85rem", color: "#777" }}>
-          {listing.category}
-        </p>
+        </div>
+
+        <div className="listing-card__content">
+          <h2 className="listing-card__title">
+              {listing.title}
+          </h2>
+
+          <p className="listing-card__price">${listing.price}</p>
+
+          <p className="listing-card__seller">
+            <Link
+              to={`/seller/${listing.sellerEmail}`}
+              className="listing-card__seller-link"
+            >
+              {listing.sellerName}
+            </Link>
+
+            <div className="listing-card__badge"><Badge type={listing.sellerType} /></div>
+
+            {isOwner && (
+              <span className="listing-card__owner-label">Your Listing</span>
+            )}
+          </p>
+
+          <p className="listing-card__category">{listing.category}</p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
