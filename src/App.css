@@ -1,38 +1,675 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+   :root {
+    --color-surface: #ffffff;
+    --color-primary: #7a0019;
+    --color-primary-soft: #a33541;
+    --color-text-main: #1f2933;
+    --color-text-muted: #6b7280;
+    --color-border: #e5e7eb;
+    --color-danger: #c53030;
+    --shadow-soft: 0 8px 20px rgba(15, 23, 42, 0.08);
+    --radius-md: 8px;
+    --radius-lg: 12px;
   }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: radial-gradient(#fbe9ee);
+    color: var(--color-text-main);
+  }
+  
+  /* Layout shell */
+  
+  .app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .app-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .app-nav__left,
+  .app-nav__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .app-nav__brand {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-primary);
+  }
+  
+  .app-nav__links {
+    display: flex;
+    gap: .75rem;
+  }
+  
+  .app-nav__link {
+    text-decoration: none;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  
+  .app-nav__link:hover {
+    background: #f3e3e8;
+    color: var(--color-primary);
+  }
+  
+  .app-nav__link--active {
+    color: var(--color-primary);
+    background: #f3e3e8;
+  }
+  
+  .app-nav__user {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /* Buttons */
+  
+  .btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: background 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+  }
+  
+  .btn:active {
+    transform: translateY(1px);
+  }
+  
+  .btn--primary {
+    background: radial-gradient(circle at top left, var(--color-primary-soft), var(--color-primary));
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(122, 0, 25, 0.3);
+  }
+  
+  .btn--primary:hover {
+    background: radial-gradient(circle at top left, var(--color-primary), var(--color-primary-soft));
+  }
+  
+  .btn--danger {
+    background: var(--color-danger);
+    color: #fff;
+  }
+  
+  .btn--outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid rgba(122, 0, 25, 0.3);
+  }
+  
+  .btn--sm {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Page container */
+  
+  .page-container {
+    flex: 1;
+    max-width: 80%;
+    margin: 1.5rem auto 3rem;
+    padding: 0 1rem;
+  }
+  
+  .page {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 1.25rem 1rem 1.5rem;
+  }
+  
+  .page__title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 650;
+    color: var(--color-primary);
+  }
+  
+  .page__subtitle {
+    margin: 0.8rem 0 1.4rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* Login page */
+
+  .login-page {
+    padding: 2.25rem 2rem;
+  }
+  
+  .login-page__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 2.75rem;
+    align-items: center;
+  }
+    
+  .login-page__branding {
+    padding-right: 2rem;
+  }
+  
+  .login-page__logo {
+    display: block;
+    max-width: 220px;      
+    height: auto;          
+    margin-bottom: 1.75rem;
+  }
+  
+  .login-page__title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 750;
+    color: var(--color-primary);
+  }
+  
+  .login-page__highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--color-text-main);
+    font-size: 0.9rem;
+  }
+  
+  .login-page__highlights li::before {
+    content: "✔";
+    margin-right: 0.4rem;
+    color: var(--color-primary);
+  }
+  
+  .login-page__highlights li + li {
+    margin-top: 0.4rem;
+  }
+    
+  .login-page__form-card {
+    background: linear-gradient(145deg, #fff7fb, #ffe9f1);
+    border-radius: var(--radius-lg);
+    padding: 1.9rem 1.6rem 1.8rem;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
+    margin-right: 30px;
+  }
+  
+  .login-page__form-title {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  
+  .login-page__form-subtitle {
+    margin: 0.5rem 0 1.4rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+    
+  .btn--full {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Forms */
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .form__label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+  }
+  
+  .form__input,
+  .form__select,
+  .form__textarea {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    padding: 0.45rem 0.6rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    background: #fdfcfe;
+    transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  
+  .form__input:focus,
+  .form__select:focus,
+  .form__textarea:focus {
+    border-color: var(--color-primary-soft);
+    box-shadow: 0 0 0 1px rgba(122, 0, 25, 0.15);
+    background: #ffffff;
+  }
+  
+  .form__error {
+    color: var(--color-danger);
+    font-size: 0.85rem;
+  }
+  
+  /* Listings grid */
+  
+  .listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Listing card */
+  
+  .listing-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    height: 400px;
+  }
+  
+  .listing-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  }
+  
+  .listing-card__image-wrapper {
+    background: #f3e3e8;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .listing-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  
+  .listing-card__body {
+    padding: 0.9rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  
+  .listing-card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 10px;
+  }
+
+  .listing-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .listing-card__badge {
+    display:block;
+    align-items: center;
+    margin: 4px 0 0 4px;
+  }
+  
+  .listing-card__category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin: 10px;
+  }
+  
+  .listing-card__price {
+    font-weight: 650;
+    color: var(--color-primary);
+    margin: 10px;
+    font-size: 20px;
+  }
+  
+  .listing-card__seller-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 0.45rem;
+    font-size: 0.85rem;
+  }
+  
+  .listing-card__seller-info {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  
+  .listing-card__seller-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin: 10px;
+  }
+  
+  .listing-card__seller-link:hover {
+    text-decoration: underline;
+  }
+  
+  .listing-card__owner-label {
+    background: gold; 
+    color: var(--color-primary);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 8px 0 0 5px;
+    display: inline-block;
+  }
+  
+  .listing-card__actions {
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .listing-card__link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .listing-card__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: inherit;
+  }
+
+  .listing-card__no-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f3e3e8, #e5e7eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  /* Listing Page */
+
+  .listing-page {
+    padding: 2rem;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+
+  .listing-page__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .listing-page__price {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-main);
+  }
+
+  .listing-page__seller-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .listing-page__image-wrapper {
+    max-width: 350px;
+    margin-bottom: 1.5rem;
+  }
+
+  .listing-page__image {
+    width: 150%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
+    object-fit: cover;
+  }
+
+  .listing-page__description {
+    margin-bottom: 1rem;
+    color: var(--color-text-main);
+    line-height: 1.5;
+  }
+
+  .listing-page__category {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .listing-page__owner-message {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .listing-page__edit-form {
+    max-width: 400px;
+    margin-top: 1rem;
+  }
+
+  /* Badge */
+  
+  .badge {
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .badge--student {
+    background: rgba(122, 0, 25, 0.08);
+    color: var(--color-primary);
+  }
+  
+  .badge--professor {
+    background: rgba(198, 146, 20, 0.12);
+    color: #854d0e;
+  }
+  
+  /* Filters bar */
+  
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .filters__search input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .filters__category select{
+    width: 100%;
+  }
+  
+  .filters__label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+  
+  /* Seller profile */
+  
+  .seller-card {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: 1rem 1.25rem;
+    margin: 1rem 0 2rem;
+    background: linear-gradient(135deg, #fff, #f9f1f4);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .seller-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  
+  .seller-card__name {
+    font-size: 1.2rem;
+    font-weight: 650;
+  }
+  
+  .seller-card__line {
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    margin: 0.15rem 0;
+  }
+
+  /* Chat Window */
+
+.chat-window {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  max-width: 900px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.chat-window__messages {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding-right: 0.25rem;
+}
+
+.chat-window__empty {
+  font-size: 0.9rem;
+}
+
+.chat-window__message-row {
   display: flex;
-  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.chat-window__message-row--me {
+  justify-content: flex-end;
+}
+
+.chat-window__message-row--other {
+  justify-content: flex-start;
+}
+
+.chat-window__bubble {
+  max-width: 70%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.chat-window__bubble--me {
+  background-color: #e3f2fd;
+}
+
+.chat-window__bubble--other {
+  background-color: #f3f3f3;
+}
+
+.chat-window__sender {
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 0.15rem;
+}
+
+.chat-window__text {
+  word-wrap: break-word;
+}
+
+.chat-window__timestamp {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.chat-window__suggested {
+  margin-bottom: 0.75rem;
+}
+
+.chat-window__suggested-label {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-muted);
+}
+
+.chat-window__suggested-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chat-window__input-row {
+  display: flex;
+  gap: 0.5rem;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-window__input-row .form__input {
+  flex: 1;
 }

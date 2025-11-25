@@ -8,7 +8,7 @@ function SellerProfile({ listings, users, sellerRatings }) {
   const emailLower = email.toLowerCase();
 
   const seller = users.find(
-    (u) => u.email.toLowerCase() === email.toLowerCase()
+    (u) => u.email.toLowerCase() === emailLower
   );
 
   const sellerListings = useMemo(() => {
@@ -21,50 +21,59 @@ function SellerProfile({ listings, users, sellerRatings }) {
   }, [listings, emailLower, seller]);
 
   const rating = sellerRatings[emailLower] || "4.5";
-  
+
   if (!seller) {
     return (
-      <div style={{ padding: "2rem" }}>
-        <h1>Seller not found</h1>
-        <p>No user registered with email {email}.</p>
+      <div className="page">
+        <h1 className="page__title">Seller not found</h1>
+        <p className="text-muted">No user registered with email {email}.</p>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "900px" }}>
-      <h1>Seller Profile</h1>
+    <div className="page">
+      <h1 className="page__title">Seller Profile</h1>
 
-      <div
-        style={{
-          border: "1px solid #ddd",
-          padding: "1rem",
-          borderRadius: "8px",
-          marginTop: "1rem",
-          marginBottom: "2rem",
-        }}
-      >
-        <h2 style={{ marginBottom: "0.5rem" }}>
-          {seller.name} <Badge type={seller.type} />
-        </h2>
+      <div className="seller-card">
+        <div className="seller-card__header">
+          <h2 className="seller-card__name">
+            {seller.name} <Badge type={seller.type} />
+          </h2>
 
-        <p><strong>Email:</strong> {seller.email}</p>
-        <p><strong>Verified:</strong> Concordia verified {seller.type}</p>
-        <p><strong>Rating:</strong> {rating}/5 ⭐</p>
-        <p><strong>Listings posted:</strong> {sellerListings.length}</p>
+          <p className="seller-card__line">
+            <strong>Email:</strong> {seller.email}
+          </p>
+
+          <p className="seller-card__line">
+            <strong>Verified:</strong> Concordia verified {seller.type}
+          </p>
+
+          <p className="seller-card__line">
+            <strong>Rating:</strong> {rating}/5 ⭐
+          </p>
+
+          <p className="seller-card__line">
+            <strong>Listings posted:</strong> {sellerListings.length}
+          </p>
+        </div>
       </div>
 
-      <h3>Listings by {seller.name}</h3>
+      <h3 className="page__subtitle" style={{ marginTop: "1.5rem" }}>
+        Listings by {seller.name}
+      </h3>
 
-      {sellerListings.length === 0 ? (
-        <p style={{ color: "#777", fontStyle: "italic" }}>
-          This seller has not posted any listings yet.
-        </p>
-      ) : (
-        sellerListings.map((listing) => (
-          <ListingCard key={listing.id} listing={listing} />
-        ))
-      )}
+     <div className="listings-grid">
+        {sellerListings.length === 0 ? (
+          <p className="text-muted" style={{ fontStyle: "italic" }}>
+            This seller has not posted any listings yet.
+          </p>
+        ) : (
+          sellerListings.map((listing) => (
+            <ListingCard key={listing.id} listing={listing} />
+          ))
+        )}
+      </div>
     </div>
   );
 }

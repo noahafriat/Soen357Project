@@ -1,4 +1,4 @@
-import React, { useState, useMemo }  from "react";
+import React, { useState, useMemo } from "react";
 import ListingCard from "../components/ListingCard";
 import Filters from "../components/Filters";
 
@@ -16,7 +16,7 @@ function Browse({ listings, currentUser }) {
     return Array.from(set);
   }, [listings]);
 
-  const filteredListings = useMemo (() => {
+  const filteredListings = useMemo(() => {
     const normalizedSearch = searchText.trim().toLowerCase();
 
     return listings.filter((listing) => {
@@ -30,15 +30,16 @@ function Browse({ listings, currentUser }) {
       const description = listing.description?.toLowerCase() || "";
 
       return (
-        title.includes(normalizedSearch) || description.includes(normalizedSearch)
+        title.includes(normalizedSearch) ||
+        description.includes(normalizedSearch)
       );
     });
   }, [listings, searchText, selectedCategory]);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Browse Listings</h1>
-      <p style={{ color: "#555", marginBottom: "0.5rem" }}>
+    <div className="page">
+      <h1 className="page__title">Browse Listings</h1>
+      <p className="page__subtitle">
         Use search and filters to find items posted by Concordia students and
         professors.
       </p>
@@ -51,18 +52,21 @@ function Browse({ listings, currentUser }) {
         categories={categories}
       />
 
-      <div style={{ marginTop: "1rem" }}>
-        {filteredListings.length === 0 ? (
-          <p style={{ color: "#777", fontStyle: "italic" }}>
-            No listings match your filters. Try adjusting your search or
-            category.
-          </p>
-        ) : (
-          filteredListings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} currentUser={currentUser} />
-          ))
-        )}
-      </div>
+      {filteredListings.length === 0 ? (
+        <p className="text-muted">
+          No listings match your filters. Try adjusting your search or category.
+        </p>
+      ) : (
+        <div className="listings-grid">
+          {filteredListings.map((listing) => (
+            <ListingCard
+              key={listing.id}
+              listing={listing}
+              currentUser={currentUser}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

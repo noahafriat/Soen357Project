@@ -5,7 +5,7 @@
     "category": "Textbooks",
     "price": 45,
     "description": "Good condition. Used for COMP 348 at Concordia.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/textbook.jpg",
     "sellerId": 1
   },
   {
@@ -14,7 +14,7 @@
     "category": "Furniture",
     "price": 60,
     "description": "Minimal wear, selling because I'm moving.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/ikea.jpg",
     "sellerId": 3
   },
   {
@@ -23,7 +23,7 @@
     "category": "Electronics",
     "price": 350,
     "description": "Perfect for school. Battery still decent.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/macbook.jpg",
     "sellerId": 2
   },
   {
@@ -32,7 +32,7 @@
     "category": "Furniture",
     "price": 25,
     "description": "Simple wood coffee table. Great for students.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/table.jpg",
     "sellerId": 9
   },
   {
@@ -41,7 +41,7 @@
     "category": "Electronics",
     "price": 90,
     "description": "1080p, works perfectly.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/monitor.jpg",
     "sellerId": 10
   },
   {
@@ -50,7 +50,7 @@
     "category": "Textbooks",
     "price": 30,
     "description": "Barely used, great condition.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/math.jpg",
     "sellerId": 4
   },
   {
@@ -59,7 +59,7 @@
     "category": "Supplies",
     "price": 15,
     "description": "Set includes rulers, compass, stencils.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/tools.jpg",
     "sellerId": 5
   },
   {
@@ -68,7 +68,7 @@
     "category": "Electronics",
     "price": 45,
     "description": "Barely used, like new.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/ps5.jpg",
     "sellerId": 11
   },
   {
@@ -77,7 +77,7 @@
     "category": "Clothing",
     "price": 40,
     "description": "Warm winter coat perfect for Montreal weather.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/coat.jpg",
     "sellerId": 3
   },
   {
@@ -86,7 +86,7 @@
     "category": "Home",
     "price": 20,
     "description": "Plates, bowls, cups, cutlery set.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/kitchen.jpg",
     "sellerId": 12
   },
   {
@@ -95,7 +95,7 @@
     "category": "Textbooks",
     "price": 35,
     "description": "Essential textbook for SOEN 287.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/webProg.jpg",
     "sellerId": 1
   },
   {
@@ -104,7 +104,7 @@
     "category": "Furniture",
     "price": 120,
     "description": "Comfortable chair, height adjustable.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/gamingChair.jpg",
     "sellerId": 7
   },
   {
@@ -113,7 +113,7 @@
     "category": "Electronics",
     "price": 50,
     "description": "Works well, includes ink.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/printer.jpg",
     "sellerId": 8
   },
   {
@@ -122,7 +122,7 @@
     "category": "Books",
     "price": 10,
     "description": "Useful for exams.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/notes.jpg",
     "sellerId": 2
   },
   {
@@ -131,7 +131,7 @@
     "category": "Furniture",
     "price": 35,
     "description": "Basic office chair. Small tear on side.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/officeChair.jpg",
     "sellerId": 4
   },
   {
@@ -140,7 +140,7 @@
     "category": "Electronics",
     "price": 85,
     "description": "Great sound quality.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/beats.jpg",
     "sellerId": 6
   },
   {
@@ -149,7 +149,7 @@
     "category": "Books",
     "price": 12,
     "description": "Perfect for beginners.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/frenchGrammar.jpg",
     "sellerId": 9
   },
   {
@@ -158,7 +158,7 @@
     "category": "Appliances",
     "price": 40,
     "description": "Works perfectly.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/microwave.jpg",
     "sellerId": 10
   },
   {
@@ -167,7 +167,7 @@
     "category": "Accessories",
     "price": 5,
     "description": "Brand new.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/airpods.jpg",
     "sellerId": 11
   },
   {
@@ -176,7 +176,7 @@
     "category": "Clothing",
     "price": 25,
     "description": "Official bookstore hoodie.",
-    "imageUrl": "https://via.placeholder.com/300",
+    "imageUrl": "/images/hoodie.jpg",
     "sellerId": 12
   }
 ]

@@ -14,21 +14,21 @@ function MyListings({ listings, currentUser }) {
   }, [listings, currentUser]);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>My Listings</h1>
-      <p style={{ color: "#555", marginBottom: "0.5rem" }}>
+    <div className="page">
+      <h1 className="page__title">My Listings</h1>
+      <p className="page__subtitle">
         Here are the items you’ve posted to the campus marketplace.
       </p>
 
       {myListings.length === 0 ? (
-        <p style={{ color: "#777", marginTop: "1rem" }}>
+        <p className="text-muted">
           You haven’t posted any listings yet.
           Go to the <strong>Post</strong> page to add your first item.
         </p>
       ) : (
-        <div style={{ marginTop: "1.5rem" }}>
+        <div className="listings-grid">
           {myListings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
+            <ListingCard key={listing.id} listing={listing} currentUser={currentUser} />
           ))}
         </div>
       )}

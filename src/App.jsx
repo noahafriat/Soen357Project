@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Browse from './pages/Browse';
@@ -97,112 +97,144 @@ function App() {
 
   return (
     <BrowserRouter>
-      <nav style={{ padding: "0.5rem 1rem", borderBottom: "1px solid #ddd" }}>
-        <Link to="/">Login</Link> |{" "}
-        <Link to="/browse">Browse</Link> |{" "}
-        <Link to="/post">Post</Link> |{" "}
-        <Link to="/my-listings">My Listings</Link> |{" "}
-        {currentUser && (
-          <span style={{ marginLeft: "1rem", fontSize: "0.9rem" }}>
-            Logged in as: {currentUser.name} ({currentUser.type}) {" "}
-            <button
-              onClick={handleLogout}
-              style={{
-                marginLeft: "0.75rem",
-                padding: "0.25rem 0.5rem",
-                backgroundColor: "#d9534f",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-                fontSize: "0.85rem"
-              }}
-            >
-              Logout
-            </button>
-          </span>
-        )}
-      </nav>
+        <nav className="app-nav">
+          <div className="app-nav__left">
+            <span className="app-nav__brand">Concordia Marketplace</span>
+                <div className="app-nav__links">
+                  {currentUser && (
+                    <>
+                      <NavLink 
+                    to="/browse"
+                    className={({ isActive }) =>
+                      isActive 
+                        ? "app-nav__link app-nav__link--active"
+                        : "app-nav__link"
+                    }
+                  >
+                    Browse
+                  </NavLink>
 
-      <div className="page-container">
-        <Routes>
-          <Route path="/" element={<Login onLogin={handleLogin} />} />
-          <Route
-            path="/browse"
-            element={
-              currentUser ? (
-                <Browse listings={listings} currentUser={currentUser} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
+                  <NavLink 
+                    to="/post"
+                    className={({ isActive }) =>
+                      isActive 
+                        ? "app-nav__link app-nav__link--active"
+                        : "app-nav__link"
+                    }
+                  >
+                    Post
+                  </NavLink>
 
-          <Route
-            path="/post"
-            element={
-              currentUser ? (
-                <Post
-                  onAddListing={handleAddListing}
-                  currentUser={currentUser}
-                />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
+                  <NavLink 
+                    to="/my-listings"
+                    className={({ isActive }) =>
+                      isActive 
+                        ? "app-nav__link app-nav__link--active"
+                        : "app-nav__link"
+                    }
+                  >
+                    My Listings
+                  </NavLink>
+                  </>
+                  )}
+                </div>
+          </div>
 
-          <Route
-            path="/listing/:id"
-            element={
-              currentUser ? (
-                <Listing 
-                  listings={listings} 
-                  currentUser={currentUser}
-                  onUpdateListing={handleUpdateListing}
-                  onDeleteListing={handleDeleteListing}
-                />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
+          <div className="app-nav__right">
+            {currentUser && (
+              <div className="app-nav__user">
+                Logged in as: <strong>{currentUser.name}</strong> ({currentUser.type})
+                <button
+                  onClick={handleLogout}
+                  className="btn btn--outline btn--sm"
+                  style={{ marginLeft: "0.5rem" }}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        </nav>
 
-          <Route
-            path="/chat/:listingId"
-            element={
-              currentUser ? (
-                <Chat listings={listings} currentUser={currentUser} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
+        <div className="page-container">
+          <Routes>
+            <Route path="/" element={<Login onLogin={handleLogin} />} />
+            <Route
+              path="/browse"
+              element={
+                currentUser ? (
+                  <Browse listings={listings} currentUser={currentUser} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
 
-          <Route
-            path="/my-listings"
-            element={
-              currentUser ? (
-                <MyListings listings={listings} currentUser={currentUser} />
-              ) : (
-                <Navigate to ='/' replace />
-              )
-            }
-          />
+            <Route
+              path="/post"
+              element={
+                currentUser ? (
+                  <Post
+                    onAddListing={handleAddListing}
+                    currentUser={currentUser}
+                  />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
 
-          <Route
-            path="/seller/:email"
-            element={
-              currentUser ? (
-                <SellerProfile listings={listings} users={users} sellerRatings={sellerRatings} />
-              ) : (
-                <Navigate to ='/' replace />
-              )
-            }
-          />
-        </Routes>
-      </div>
-    </BrowserRouter>
+            <Route
+              path="/listing/:id"
+              element={
+                currentUser ? (
+                  <Listing 
+                    listings={listings} 
+                    currentUser={currentUser}
+                    onUpdateListing={handleUpdateListing}
+                    onDeleteListing={handleDeleteListing}
+                  />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+
+            <Route
+              path="/chat/:listingId"
+              element={
+                currentUser ? (
+                  <Chat listings={listings} currentUser={currentUser} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+
+            <Route
+              path="/my-listings"
+              element={
+                currentUser ? (
+                  <MyListings listings={listings} currentUser={currentUser} />
+                ) : (
+                  <Navigate to ='/' replace />
+                )
+              }
+            />
+
+            <Route
+              path="/seller/:email"
+              element={
+                currentUser ? (
+                  <SellerProfile listings={listings} users={users} sellerRatings={sellerRatings} />
+                ) : (
+                  <Navigate to ='/' replace />
+                )
+              }
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
   );
 }
 

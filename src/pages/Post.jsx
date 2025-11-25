@@ -32,125 +32,103 @@ function Post({ onAddListing, currentUser }) {
     }
 
     const newListing = {
-      id: Date.now().toString(), 
+      id: Date.now().toString(),
       title: title.trim(),
       category,
       price: Number(price),
       description: description.trim(),
-      imageUrl: imagePreview || null, 
+      imageUrl: imagePreview || null,
       sellerName: currentUser?.name || currentUser?.email || "Unknown seller",
       sellerType: currentUser?.type || null,
       sellerEmail: currentUser?.email || null
     };
 
     onAddListing(newListing);
-
     navigate("/browse");
   };
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "600px" }}>
-      <h1>Post a Listing</h1>
-      <p style={{ color: "#555", marginBottom: "1rem" }}>
+    <div className="page">
+      <h1 className="page__title">Post a Listing</h1>
+      <p className="page__subtitle">
         Fill out the details below to post an item to the campus marketplace.
       </p>
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "0.75rem" }}>
-          <label style={{ display: "block", marginBottom: "0.25rem" }}>
-            Title *
-          </label>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form__group">
+          <label className="form__label">Title *</label>
           <input
             type="text"
+            className="form__input"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            style={{ width: "100%", padding: "0.4rem" }}
             placeholder="e.g., COMP 348 Textbook"
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
-        <div style={{ marginBottom: "0.75rem" }}>
-          <label style={{ display: "block", marginBottom: "0.25rem" }}>
-            Price *
-          </label>
+        <div className="form__group">
+          <label className="form__label">Price *</label>
           <input
             type="number"
             min="0"
+            className="form__input"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            style={{ width: "100%", padding: "0.4rem" }}
             placeholder="e.g., 40"
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
 
-        <div style={{ marginBottom: "0.75rem" }}>
-          <label style={{ display: "block", marginBottom: "0.25rem" }}>
-            Category
-          </label>
+        <div className="form__group">
+          <label className="form__label">Category</label>
           <select
+            className="form__select"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            style={{ width: "100%", padding: "0.4rem" }}
           >
             <option value="Textbooks">Textbooks</option>
             <option value="Electronics">Electronics</option>
             <option value="Books">Books</option>
-            <option value="Furniture/Appliances">Furniture/Appliances</option>
+            <option value="Furniture">Furniture</option>
             <option value="LabGear">Lab Gear</option>
+            <option value="Supplies">Supplies</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Home">Home</option>
+            <option value="Appliances">Appliances</option>
+            <option value="Accessories">Accessories</option>
             <option value="Tutoring">Tutoring</option>
             <option value="Other">Other</option>
           </select>
         </div>
 
-        <div style={{ marginBottom: "0.75rem" }}>
-          <label style={{ display: "block", marginBottom: "0.25rem" }}>
-            Description
-          </label>
+        <div className="form__group">
+          <label className="form__label">Description</label>
           <textarea
+            className="form__textarea"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={4}
-            style={{ width: "100%", padding: "0.4rem" }}
             placeholder="Add details like condition, pickup location, etc."
+            rows={4}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 
-        <div style={{ marginBottom: "0.75rem" }}>
-          <label style={{ display: "block", marginBottom: "0.25rem" }}>
-            Image (optional)
-          </label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+        <div className="form__group">
+          <label className="form__label">Image (optional)</label>
+          <input type="file" accept="image/*" onChange={handleImageChange} />
           {imagePreview && (
-            <div style={{ marginTop: "0.5rem" }}>
-              <p style={{ fontSize: "0.9rem", color: "#555" }}>Preview:</p>
+            <div>
+              <p className="text-muted">Preview:</p>
               <img
                 src={imagePreview}
                 alt="Preview"
-                style={{ maxWidth: "200px", borderRadius: "8px" }}
+                className="listing-card__image"
               />
             </div>
           )}
         </div>
 
-        {error && (
-          <p style={{ color: "red", marginBottom: "0.75rem" }}>{error}</p>
-        )}
+        {error && <p className="form__error">{error}</p>}
 
-        <button
-          type="submit"
-          style={{
-            padding: "0.5rem 1rem",
-            backgroundColor: "#7b1fa2",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
-        >
+        <button type="submit" className="btn btn--primary">
           Post listing
         </button>
       </form>
