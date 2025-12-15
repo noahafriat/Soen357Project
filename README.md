@@ -11,6 +11,7 @@ Access is restricted to users with a verified @concordia.ca email, creating a tr
 - Concordia-only login (requires @concordia.ca email)
 - Post new listings with title, description, price, and category
 - Browse all listings in a responsive grid layout
+- Message users to inquire about listings
 - View your own posts through a dedicated My Listings page
 - View seller profiles and all items posted by a specific user
 - Fully clickable listing cards for smooth navigation
